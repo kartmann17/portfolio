@@ -4,9 +4,9 @@ services:
   app:
     build:
       context: .
-    container_name: my-php-container
+    container_name: Portfolio
     ports:
-      - "8080:80"  # Accéder à l'application via localhost:8080
+      - "8083:80"  # Accéder à l'application via localhost:8080
     env_file:
       - .env       # Charger les variables d'environnement
     depends_on:
@@ -20,7 +20,7 @@ services:
 
   db:
     image: mariadb:10.11
-    container_name: my-db-container
+    container_name: portfolio1
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -36,7 +36,7 @@ services:
 
   mongo:
     image: mongo:6.0
-    container_name: my-mongo-container
+    container_name: portfolio2
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}

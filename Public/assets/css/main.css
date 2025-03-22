@@ -7,7 +7,7 @@ body {
 
 /* Section Hero */
 .hero {
-    background-image: url('background-image.jpg'); /* Mettez une belle image en arrière-plan */
+    background-image: url('background-image.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -26,7 +26,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* Légère superposition sombre pour faire ressortir le texte */
+    background: rgba(0, 0, 0, 0.5); 
 }
 
 .hero-content {

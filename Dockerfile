@@ -9,8 +9,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && docker-php-ext-install -j$(nproc) pdo_mysql mbstring intl gd opcache exif zip \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Installer l'extension MongoDB PHP
-RUN pecl install mongodb && docker-php-ext-enable mongodb
+# Installer et activer l'extension MongoDB PHP (version 1.21.0)
+RUN pecl install mongodb-1.21.0 && docker-php-ext-enable mongodb
 
 # Activer le module mod_rewrite d'Apache
 RUN a2enmod rewrite
@@ -30,8 +30,8 @@ WORKDIR /var/www/html
 # Copier les fichiers nécessaires pour composer
 COPY composer.json composer.lock ./
 
-# Installer les dépendances avec Composer
-RUN composer install --no-dev --optimize-autoloader
+# Mettre à jour Composer et installer les dépendances avec les bonnes versions
+RUN composer update --no-dev --optimize-autoloader
 
 # Copier le reste de l'application
 COPY . .

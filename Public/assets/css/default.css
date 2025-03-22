@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,6 +9,56 @@ body {
     line-height: 1.6;
     background-color: #f4f4f4;
     color: #333;
+}
+
+.navbar {
+    padding: 0.5rem 1rem;
+    background-color: #007bff; /* Couleur bleue */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+}
+
+.navbar a.nav-link {
+    color: white !important;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.navbar a.nav-link:hover {
+    color: #f4f4f4 !important;
+    transition: color 0.3s ease;
+}
+
+.navbar-toggler {
+    border-color: white;
+}
+
+.navbar-toggler-icon {
+    background-color: white;
+}
+
+.navbar-brand img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #f4f4f4;
 }
 
 #success-message{
