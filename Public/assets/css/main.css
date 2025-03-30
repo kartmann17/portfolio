@@ -1,22 +1,60 @@
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+/* ========== MEDIA QUERIES (Responsive First) ========== */
+
+@media (max-width: 992px) {
+    .letter {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
 }
 
-/* Section Hero */
+@media (max-width: 768px) {
+    .project {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .fancy-title {
+      padding: 0 10px;
+      gap: 8px;
+      height: auto;
+    }
+
+    .word {
+      justify-content: center;
+      gap: 3px;
+      max-width: 100%;
+    }
+
+    .letter {
+      font-size: 3rem !important;
+      padding: 1px !important;
+      border-width: 1px !important;
+      height: auto !important;
+    }
+  }
+
+/* ========== STRUCTURE ========== */
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
 .hero {
-    background-image: url('background-image.jpg');
-    background-size: cover;
-    background-position: center;
+    position: relative;
     height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    color: #fff;
+    justify-content: center;
     text-align: center;
-    position: relative;
+    padding: 0 20px;
+    color: white;
+    overflow: hidden;
 }
 
 .hero::before {
@@ -24,103 +62,204 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5); 
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #0099CC, #FFD700, #FF6B6B, #00A86B);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: brightness(0.7) blur(3px);
+    z-index: 0;
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
-.hero h1 {
-    font-size: 3rem;
+.fancy-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .word {
+    display: flex;
+    flex-wrap: nowrap;       /* bloque les retours à la ligne */
+    justify-content: center;
+    gap: 6px;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .letter {
+    font-size: 4rem;
     font-weight: bold;
-    margin-bottom: 20px;
-}
+    padding: 4px;
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    transition: all 0.5s ease;
+    background: linear-gradient(135deg, #FFD700, #0099CC, #FF6B6B, #00A86B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    flex-shrink: 0;
+  }
 
-.hero p {
+.hero-content p {
     font-size: 1.2rem;
     margin-bottom: 30px;
+    animation: fadeInUp 1.5s ease-out;
 }
 
 .cta-button {
-    background-color: #3498db;
+    background-color: #FF6B6B;
     color: #fff;
-    text-decoration: none;
     padding: 15px 30px;
-    font-size: 1rem;
+    border: none;
     border-radius: 5px;
+    font-size: 1rem;
+    text-decoration: none;
     transition: background-color 0.3s ease;
+    animation: fadeInUp 2s ease-out;
 }
 
 .cta-button:hover {
-    background-color: #2980b9;
+    background-color: #e65b5b;
 }
 
-/* Section des projets */
 .projects {
+    padding: 80px 20px;
     background-color: #fff;
-    padding: 40px 0;
 }
 
 .projects h2 {
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 30px;
+    font-size: 2.5rem;
+    color: #2C3E50;
+    margin-bottom: 50px;
 }
 
 .project {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin-bottom: 30px;
+    background-color: #f5f5f5;
+    border-left: 5px solid #00A86B;
+    padding: 30px;
+    margin-bottom: 40px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.project:hover {
+    transform: translateY(-5px);
 }
 
 .project h3 {
-    font-size: 1.5rem;
+    color: #0099CC;
     margin-bottom: 10px;
 }
 
-.project p {
-    font-size: 1rem;
-    margin-bottom: 15px;
+.project a {
+    color: #FF6B6B;
+    font-weight: bold;
+    text-decoration: none;
 }
 
-.project a {
-    text-decoration: none;
-    color: #3498db;
-    font-weight: bold;
+.project a:hover {
+    text-decoration: underline;
 }
 
 .project img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
     margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
 }
 
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
+.contact-section {
+    background-color: #f5f5f5;
+    padding: 60px 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-title {
+    text-align: center;
+    color: #2C3E50;
+    margin-bottom: 40px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-input,
+.contact-textarea {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+}
+
+.contact-button {
+    background-color: #FF6B6B;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+    background-color: #e25757;
+}
+
+/* ========== ANIMATIONS ========== */
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
     }
 
-    .hero p {
-        font-size: 1rem;
+    50% {
+        background-position: 100% 50%;
     }
 
-    .projects {
-        padding: 20px 0;
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
 
-    .project {
-        margin-bottom: 20px;
-    }
-
-    .project img {
-        max-width: 100%;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

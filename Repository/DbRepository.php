@@ -33,7 +33,7 @@ abstract class DbRepository
 
         $listChamps = implode(', ', $champs);
         $listeInter = implode(', ', $inter);
-        $sql = 'INSERT INTO ' . $this->table . ' (' . $listChamps . ') VALUES (' . $listeInter . ')';
+        $sql = `INSERT INTO {$this->table} ({$listChamps}) VALUES ({$listeInter})`;
         return $this->req($sql, $valeurs);
     }
 
@@ -65,7 +65,7 @@ abstract class DbRepository
 
     /**
      * Retrieves an entry by its column value.
-     * 
+     *
      * Executes a SELECT statement to find a specific row by a column value.
      *
      * @param object $criteres An associative array of column names and values to search for.
