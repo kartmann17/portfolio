@@ -8,11 +8,11 @@ class MetaService
     {
         $defaults = [
             'title' => 'Kréyatik Studio - Création de sites internet modernes et performants',
-            'description' => "Kréyatik Studio conçoit des sites internet modernes, responsives et performants pour les professionnels, créateurs et entrepreneurs. Site vitrine ou e-commerce 100% sécurisé, design sur mesure, optimisation SEO et accompagnement complet dès 80€/mois.",
+            'description' => "Kréyatik Studio conçoit des sites internet modernes, responsives et performants pour les professionnels, créateurs et entrepreneurs. Site vitrine ou e-commerce 100% sécurisé, design sur mesure, optimisation SEO et accompagnement complet dès 99€/mois.",
             'keywords' => "création site web, agence web, site internet sur mesure, site professionnel, site vitrine, site e-commerce sécurisé, boutique en ligne, refonte site, SEO, responsive design, webdesign, développement web, Kréyatik Studio, site WordPress, site optimisé, site pas cher",
             'author' => 'Kréyatik Studio',
             'url' => 'https://kreyatikstudio.fr',
-            'image' => '/assets/images/preview.jpg',
+            'image' => '/assets/images/STUDIOcolibri.png',
         ];
 
         $data = array_merge($defaults, $meta);

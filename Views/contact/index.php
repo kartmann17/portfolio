@@ -1,4 +1,4 @@
-<section class="py-5 bg-light">
+<section class="py-5 bg-light mt-5">
         <div class="container">
             <h1 class="text-center mb-4">Parlons de votre projet</h1>
             <p class="text-center mb-5">Remplissez le formulaire ci-dessous et nous vous répondrons rapidement.</p>

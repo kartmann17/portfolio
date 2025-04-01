@@ -1,19 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #f9f9f9;
-    color: #1E1E1E;
-}
-
 @media (max-width: 991.98px) {
-
-
     .navbar-nav {
         flex-direction: column;
         align-items: flex-start;
@@ -26,6 +11,25 @@ body {
     }
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #0099cc;
+    --secondary: #ff6b6b;
+    --accent: #ffd700;
+    --dark: #1e1e1e;
+    --light: #f9f9f9;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f9f9f9;
+    color: #1E1E1E;
+}
 
 .navbar {
     position: fixed;
@@ -41,15 +45,6 @@ body {
     justify-content: space-between;
     align-items: center;
     transition: background 0.3s ease;
-}
-
-.navbar-brand img {
-    height: 40px;
-    transition: transform 0.3s ease;
-}
-
-.navbar-brand img:hover {
-    transform: scale(1.1);
 }
 
 .navbar-nav {
@@ -88,60 +83,145 @@ body {
     color: rgba(0, 153, 204, 0.9);
 }
 
-@media (max-width: 991.98px) {
-    .navbar-nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .navbar-nav .nav-item {
-        width: 100%;
-    }
-
-    .navbar-nav .nav-item .nav-link {
-        display: block;
-        width: 100%;
-    }
-}
-
 @keyframes slideDown {
     from {
         transform: translateY(-100%);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
     }
 }
 
-
-footer {
-    background: linear-gradient(to right, rgba(0, 153, 204, 0.9), rgba(255, 215, 0, 0.9));
-    color: white;
-    padding: 1rem 0;
+.footer {
+    background: linear-gradient(135deg, #0099CC, #00A86B, #FFD700, #FF6B6B);
+    background-size: 400% 400%;
+    animation: gradientFooter 15s ease infinite;
+    color: #f9f9f9;
+    padding: 30px 20px 15px;
+    font-size: 0.95rem;
     text-align: center;
 }
 
-footer a {
-    color: #007bff;
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-col.branding {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer h5 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.footer p {
+    line-height: 1.6;
+    color: #e0e0e0;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer-links li {
+    margin: 0;
+}
+
+.footer-links a {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #f0f0f0;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-footer a:hover {
-    color: #f4f4f4;
+.footer-links a:hover {
+    color: #FFD700;
 }
 
-#success-message{
+
+.footer-bottom {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #f0f0f0;
+}
+
+@keyframes gradientFooter {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .footer-col {
+        width: 100%;
+        padding: 0;
+    }
+
+    .footer h5 {
+        margin-bottom: 8px;
+    }
+
+    .footer p,
+    .footer-links li {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .footer {
+        padding: 40px 20px 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footer {
+        animation: none !important;
+        background-position: center !important;
+    }
+}
+
+#success-message,
+#error-message {
     display: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#success-message {
     background-color: #4CAF50;
-    color: white;
-    font-weight: bold;
 }
 
-#error-message{
-    display: none;
+#error-message {
     background-color: #f44336;
-    color: white;
-    font-weight: bold;
 }

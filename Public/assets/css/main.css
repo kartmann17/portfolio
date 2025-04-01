@@ -1,5 +1,4 @@
 /* ========== MEDIA QUERIES (Responsive First) ========== */
-
 @media (max-width: 992px) {
     .letter {
         font-size: 2.5rem;
@@ -14,31 +13,40 @@
     .project {
         padding: 20px;
     }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .footer-col {
+        width: 100%;
+    }
 }
 
 @media (max-width: 576px) {
     .fancy-title {
-      padding: 0 10px;
-      gap: 8px;
-      height: auto;
+        padding: 0 10px;
+        gap: 8px;
+        height: auto;
     }
 
     .word {
-      justify-content: center;
-      gap: 3px;
-      max-width: 100%;
+        justify-content: center;
+        gap: 3px;
+        max-width: 100%;
     }
 
     .letter {
-      font-size: 3rem !important;
-      padding: 1px !important;
-      border-width: 1px !important;
-      height: auto !important;
+        font-size: 3rem !important;
+        padding: 1px !important;
+        border-width: 1px !important;
+        height: auto !important;
     }
-  }
+}
 
 /* ========== STRUCTURE ========== */
-
 .container {
     max-width: 1100px;
     margin: 0 auto;
@@ -64,7 +72,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(-45deg, #0099CC, #FFD700, #FF6B6B, #00A86B);
+    background: linear-gradient(-90deg, #0099CC, #FFD700, #FF6B6B, #00A86B);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     opacity: 0.5;
@@ -93,18 +101,18 @@
     align-items: center;
     gap: 10px;
     text-align: center;
-  }
+}
 
-  .word {
+.word {
     display: flex;
-    flex-wrap: nowrap;       /* bloque les retours à la ligne */
+    flex-wrap: nowrap;
     justify-content: center;
     gap: 6px;
     max-width: 100%;
     overflow-x: auto;
-  }
+}
 
-  .letter {
+.letter {
     font-size: 4rem;
     font-weight: bold;
     padding: 4px;
@@ -115,7 +123,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     flex-shrink: 0;
-  }
+}
 
 .hero-content p {
     font-size: 1.2rem;
@@ -139,52 +147,49 @@
     background-color: #e65b5b;
 }
 
-.projects {
-    padding: 80px 20px;
-    background-color: #fff;
-}
-
-.projects h2 {
-    text-align: center;
-    font-size: 2.5rem;
+.engagements {
+    padding: 60px 20px;
+    background: #f5f5f5;
     color: #2C3E50;
-    margin-bottom: 50px;
 }
 
-.project {
-    background-color: #f5f5f5;
-    border-left: 5px solid #00A86B;
-    padding: 30px;
-    margin-bottom: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
-}
-
-.project:hover {
-    transform: translateY(-5px);
-}
-
-.project h3 {
-    color: #0099CC;
-    margin-bottom: 10px;
-}
-
-.project a {
-    color: #FF6B6B;
+.engagements h2 {
+    text-align: center;
+    font-size: 2.2rem;
     font-weight: bold;
-    text-decoration: none;
+    margin-bottom: 15px;
 }
 
-.project a:hover {
-    text-decoration: underline;
+.engagements .lead {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: #555;
 }
 
-.project img {
-    margin-top: 20px;
-    width: 100%;
-    max-width: 600px;
-    border-radius: 8px;
+.engagement-box {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.engagement-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+}
+
+.engagement-box h4 {
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.engagement-box p {
+    font-size: 0.95rem;
+    color: #444;
 }
 
 .contact-section {
@@ -237,7 +242,6 @@
 }
 
 /* ========== ANIMATIONS ========== */
-
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
@@ -262,4 +266,41 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* ========== PARALLAX À PROPOS ========== */
+.about-parallax {
+    position: relative;
+    background-image: url('/assets/images/light.webp');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+}
+
+.about-parallax-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 60px 20px;
+}
+
+.about-parallax .section-title {
+    color: white;
+}
+
+.about-parallax p,
+.about-parallax li {
+    color: #fff;
+}
+
+.about-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.about-list li {
+    margin-bottom: 12px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
 }
