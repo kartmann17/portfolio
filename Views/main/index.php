@@ -9,7 +9,7 @@ $css = 'main'
         </h1>
         <p>Votre lumière merite d'être en ligne.</p>
         <p>Faites décoller votre présence en ligne dès <span class="fw-bold">99 € / mois.</span>  Design, performance et accompagnement inclus.</p>
-        <a href="/NosOffres" class="cta-button">Explorer nos offres</a>
+        <a href="#engagements" class="cta-button">Nos Engagements</a>
     </div>
 </section>
 
@@ -49,7 +49,7 @@ $css = 'main'
 </section>
 
 <!-- ========== ENGAGEMENTS (FACTUEL & STRUCTURÉ) ========== -->
-<section class="engagements py-5">
+<section class="engagements py-5" id="engagements">
   <div class="container">
     <h2 class="section-title">Pourquoi choisir Kréyatik Studio ?</h2>
     <p class="lead text-center">Plus qu’un prestataire, un véritable partenaire digital à vos côtés.</p>
@@ -110,6 +110,10 @@ $css = 'main'
             <textarea name="message" placeholder="Votre message" rows="6" required class="contact-textarea"></textarea>
             <button type="submit" class="contact-button">Envoyer</button>
         </form>
+        <div>
+            <div id="error-message" class="alert alert-danger" role="alert"></div>
+            <div id="success-message" class="alert alert-success" role="alert"></div>
+        </div>
     </div>
 </section>
 

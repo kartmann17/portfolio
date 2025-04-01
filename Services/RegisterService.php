@@ -33,7 +33,7 @@ class RegisterService
             'email' => $data['email'],
             'password' => $password,
             'token' => $token,
-            'id_role' => $data['id_role'] ?? 2,
+            'id_role' => 1
         ];
         // Hydrater et enregistrer l'utilisateur avec le token
         $UsersModel = new UserModel();
@@ -57,7 +57,7 @@ class RegisterService
             // Contenu de l'email
             $to = $email;
             $Subject = 'Confirmation de votre inscription';
-            $confirmationLink = "http://localhost:8080/register/confirm/" . $token;
+            $confirmationLink = "http://localhost:8083/register/confirm/" . $token;
             $Body = "Bonjour,<br>
                 <br>
                 Merci pour votre inscription.<br>

@@ -85,7 +85,7 @@ $css = 'nosoffres'
 <div class="modal-overlay" id="modal" style="display:none;">
     <div class="modal-form">
         <h3 id="modal-title">Souscrire à une offre</h3>
-        <form action="mailto:contact@kreyatikstudio.fr" method="POST" enctype="text/plain">
+        <form action="mailto:dronex.contact@gmail.com" method="POST" enctype="text/plain">
             <input type="text" name="nom" placeholder="Votre nom" required>
             <input type="email" name="email" placeholder="Votre email" required>
             <input type="hidden" id="selected-plan" name="offre">
@@ -109,6 +109,8 @@ $css = 'nosoffres'
                 <button type="button" class="cancel" onclick="closeForm()">Annuler</button>
             </div>
         </form>
+        <div id="error-message" class="alert alert-danger" role="alert"></div>
+        <div id="success-message" class="alert alert-success" role="alert"></div>
     </div>
 </div>
 <?php

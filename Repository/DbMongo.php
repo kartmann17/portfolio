@@ -15,14 +15,14 @@ class DbMongo extends Mongo
     /**
      * Constructeur : Initialise la base de données et les collections.
      */
-    public function __construct() 
+    public function __construct()
     {
         // Obtenir la base de données via le singleton
         $this->db = Mongo::getInstance()->getDatabase();
 
         // Configuration des collections
         $this->collections = [
-            'actu' => 'actu'
+            'mailclient' => 'mailclient'
         ];
     }
 
@@ -32,7 +32,7 @@ class DbMongo extends Mongo
      * @return \MongoDB\Collection
      * @throws Exception Si l'alias n'existe pas.
      */
-    public function getCollection(string $alias): Collection 
+    public function getCollection(string $alias): Collection
     {
         if (!isset($this->collections[$alias])) {
             throw new \Exception("La collection avec le nom '{$alias}' n'existe pas.");
@@ -49,7 +49,7 @@ class DbMongo extends Mongo
      * @param array $data Données à insérer.
      * @return string ID du document inséré.
      */
-    public function create(string $alias, array $data): string 
+    public function create(string $alias, array $data): string
     {
         $collection = $this->getCollection($alias);
         $result = $collection->insertOne($data);
@@ -62,7 +62,7 @@ class DbMongo extends Mongo
      * @param string $id ID du document.
      * @return array|null Document trouvé ou null.
      */
-    public function find(string $alias, string $id): ?array 
+    public function find(string $alias, string $id): ?array
     {
         $collection = $this->getCollection($alias);
         $result = $collection->findOne(['_id' => new ObjectId($id)]);
@@ -76,7 +76,7 @@ class DbMongo extends Mongo
      * @param array $options Options supplémentaires (projection, tri, etc.).
      * @return array Liste des documents trouvés.
      */
-    public function findBy(string $alias, array $criteria, array $options = []): array 
+    public function findBy(string $alias, array $criteria, array $options = []): array
     {
         $collection = $this->getCollection($alias);
         $cursor = $collection->find($criteria, $options);
@@ -88,7 +88,7 @@ class DbMongo extends Mongo
      * @param string $alias Alias de la collection.
      * @return array Liste de tous les documents.
      */
-    public function findAll(string $alias): array 
+    public function findAll(string $alias): array
     {
         $collection = $this->getCollection($alias);
         $cursor = $collection->find();
@@ -103,7 +103,7 @@ class DbMongo extends Mongo
      * @param bool $multiple Mettre à jour plusieurs documents ou non.
      * @return int Nombre de documents modifiés.
      */
-    public function update(string $alias, array $criteria, array $update, bool $multiple = false): int 
+    public function update(string $alias, array $criteria, array $update, bool $multiple = false): int
     {
         $collection = $this->getCollection($alias);
         $result = $multiple
@@ -119,7 +119,7 @@ class DbMongo extends Mongo
      * @param bool $multiple Supprimer plusieurs documents ou non.
      * @return int Nombre de documents supprimés.
      */
-    public function delete(string $alias, array $criteria, bool $multiple = false): int 
+    public function delete(string $alias, array $criteria, bool $multiple = false): int
     {
         $collection = $this->getCollection($alias);
         $result = $multiple

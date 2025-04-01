@@ -17,7 +17,7 @@ abstract class DbRepository
      *
      * @return PDOStatement|false Returns a PDOStatement object on success, or false on failure.
      */
-    public function create($data)
+     public function create($data)
     {
         $champs = [];
         $inter = [];
@@ -33,7 +33,7 @@ abstract class DbRepository
 
         $listChamps = implode(', ', $champs);
         $listeInter = implode(', ', $inter);
-        $sql = `INSERT INTO {$this->table} ({$listChamps}) VALUES ({$listeInter})`;
+        $sql = 'INSERT INTO ' . $this->table . ' (' . $listChamps . ') VALUES (' . $listeInter . ')';
         return $this->req($sql, $valeurs);
     }
 
