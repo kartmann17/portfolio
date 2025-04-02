@@ -16,46 +16,40 @@ class Main
      */
     public function start()
     {
-        // Sécuriser les sessions avant de démarrer
-        ini_set('session.cookie_secure', 1);  // Utiliser des cookies sécurisés uniquement
-        ini_set('session.cookie_httponly', 1);  // Empêcher l'accès par JavaScript
-        session_start();  // Démarre la session après la configuration des paramètres
+        session_start();
 
-        session_regenerate_id(true);  // Renouveler l'ID de session après avoir démarré la session
+        // Vérifier si l'utilisateur a accepté les cookies (vérifie la présence du cookie "cookieConsent")
+        if (isset($_COOKIE['cookieConsent']) && $_COOKIE['cookieConsent'] === 'accepted') {
+            // Définir un cookie "last_visit" uniquement si l'utilisateur a donné son consentement
+            if (!isset($_COOKIE['last_visit'])) {
+                setcookie('last_visit', time(), time() + 3600 * 24 * 30, "/", "", true, false);
+            }
+        }
 
         // Générer le token CSRF si absent de la session
         if (empty($_SESSION['csrf_token'])) {
-            $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Stocke directement le jeton haché
-            // Assurez-vous que le token est stocké dans un cookie sécurisé
-            setcookie('csrf_token', $_SESSION['csrf_token'], [
-                'secure' => true,  // Assurez-vous que l'option 'secure' est activée pour HTTPS
-                'httponly' => true,  // Empêche l'accès via JavaScript
-                'samesite' => 'Strict'  // Empêche l'envoi du cookie dans des requêtes cross-site
-            ]);
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
         }
 
-        // Vérifier la présence de la barre oblique finale et rediriger si nécessaire
         $uri = $_SERVER['REQUEST_URI'];
+
         if (!empty($uri) && $uri != '/' && $uri[-1] === '/') {
             $uri = substr($uri, 0, -1);
             echo json_encode(['redirect_url' => $uri]);
             exit();
         }
 
-        // Traitement des données POST et vérification du jeton CSRF
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $csrfToken = $_POST['csrf_token'] ?? '';
             $this->checkCsrfToken($csrfToken);
             $_POST = $this->sanitizeFormData($_POST);
         }
 
-        // Analyse de l'URL et gestion des paramètres pour le contrôleur et l'action
         $params = isset($_GET['p']) ? explode('/', filter_var($_GET['p'], FILTER_SANITIZE_URL)) : [];
 
         if (isset($params[0]) && $params[0] != '') {
             $controllerName = '\\App\\Controllers\\' . ucfirst(array_shift($params)) . 'Controller';
 
-            // Vérifier si le contrôleur existe
             if (class_exists($controllerName)) {
                 $controller = new $controllerName();
             } else {
@@ -63,7 +57,6 @@ class Main
                 return;
             }
 
-            // Vérifier si l'action existe dans le contrôleur
             $action = (isset($params[0])) ? array_shift($params) : 'index';
 
             if (method_exists($controller, $action)) {
@@ -88,8 +81,7 @@ class Main
      */
     public function checkCsrfToken($token)
     {
-        $cookieToken = $_COOKIE['csrf_token'] ?? '';
-        if (!isset($_SESSION['csrf_token']) || !hash_equals($cookieToken, $token)) {
+        if (!isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $token)) {
             // Retourner une erreur 403 si le jeton CSRF est invalide ou manquant
             http_response_code(403);
             echo json_encode(['error' => 'Jeton CSRF invalide.']);

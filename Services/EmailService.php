@@ -49,7 +49,7 @@ class EmailService
         try {
             // Expéditeur et destinataire
             $from = $from ?? $_ENV['MAIL_USERNAME'];
-            $fromName = $fromName ?? 'MultiGames-JS';
+            $fromName = $fromName ?? 'Kreyatik Studio';
 
             $this->mailer->setFrom($from, $fromName);
             $this->mailer->addAddress($to);
