@@ -2,9 +2,74 @@
 
 namespace App\Services;
 
+use App\Models\EmailModel;
+use App\Repository\EmailRepository;
+
 
 class SendEmailService
 {
+
+    public function saveMessage($data)
+{
+    header('Content-Type: application/json');
+
+    // // Vérification du reCAPTCHA
+    // $secretKey = "YOUR_SECRET_KEY";
+    // $recaptchaResponse = $_POST['g-recaptcha-response'];
+
+    // // Vérification du CAPTCHA
+    // $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$recaptchaResponse");
+    // $responseKeys = json_decode($response, true);
+
+    // if (intval($responseKeys["success"]) !== 1) {
+    //     // Si la vérification échoue
+    //     http_response_code(400);
+    //     echo json_encode(["status" => "error", "message" => "La vérification CAPTCHA a échoué."]);
+    //     exit();
+    // }
+
+    // Vérification des champs obligatoires
+    if (empty($data['name']) || empty($data['email']) || empty($data['message'])) {
+        http_response_code(400);
+        echo json_encode(["status" => "error", "message" => "Les champs nom, email et message sont obligatoires."]);
+        exit();
+    }
+
+    // Validation de l'email
+    if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+        http_response_code(400);
+        echo json_encode(["status" => "error", "message" => "Email invalide."]);
+        exit();
+    }
+
+    // Préparation des données
+    $data = [
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'object_message' => $data['object_message'] ?? null,
+        'message' => $data['message'],
+        'paiement' => $data['paiement'] ?? null,
+        'offre' => $data['offre'] ?? null
+    ];
+
+    $emailModel = new EmailModel();
+    $emailModel->hydrate($data);
+
+    // Enregistrement en base
+    if ($emailModel = (new EmailRepository())->create($data)) {
+        // Envoi de l'email
+        $this->sendEmail($data['email']);
+
+        http_response_code(200);
+        echo json_encode(["status" => "success", "message" => "Votre message a été enregistré avec succès."]);
+    } else {
+        http_response_code(500);
+        echo json_encode(["status" => "error", "message" => "Erreur lors de l'enregistrement du message."]);
+    }
+
+    exit();
+}
+
 
     private function sendEmail($email)
     {

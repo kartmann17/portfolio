@@ -103,10 +103,11 @@ $css = 'main'
             Merci ! Votre message a bien été envoyé.
         </div>
 
-        <form action="/contact" method="post" class="contact-form">
+        <form action="/SendEmail/emailClient" method="post" class="contact-form">
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <input type="text" name="name" placeholder="Votre nom" required class="contact-input">
             <input type="email" name="email" placeholder="Votre email" required class="contact-input">
-            <input type="text" name="subject" placeholder="Objet" required class="contact-input">
+            <input type="text" name="object_message" placeholder="Objet" required class="contact-input">
             <textarea name="message" placeholder="Votre message" rows="6" required class="contact-textarea"></textarea>
             <button type="submit" class="contact-button">Envoyer</button>
         </form>

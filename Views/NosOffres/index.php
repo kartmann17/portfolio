@@ -85,8 +85,9 @@ $css = 'nosoffres'
 <div class="modal-overlay" id="modal" style="display:none;">
     <div class="modal-form">
         <h3 id="modal-title">Souscrire à une offre</h3>
-        <form action="mailto:dronex.contact@gmail.com" method="POST" enctype="text/plain">
-            <input type="text" name="nom" placeholder="Votre nom" required>
+        <form action="/SendEmail/emailClient" method="POST" enctype="text/plain">
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+            <input type="text" name="name" placeholder="Votre nom" required>
             <input type="email" name="email" placeholder="Votre email" required>
             <input type="hidden" id="selected-plan" name="offre">
             <input type="hidden" id="selected-price" name="abonnement">
@@ -94,16 +95,16 @@ $css = 'nosoffres'
 
             <div class="radio-group">
                 <label class="radio-option">
-                    <input type="radio" name="type_paiement" value="Abonnement mensuel" required>
+                    <input type="radio" name="paiement" value="Abonnement mensuel" required>
                     Abonnement mensuel
                 </label>
                 <label class="radio-option">
-                    <input type="radio" name="type_paiement" value="Paiement en une fois">
+                    <input type="radio" name="paiement" value="Paiement en une fois">
                     Paiement en une fois
                 </label>
             </div>
 
-            <textarea name="message" placeholder="Détails supplémentaires (facultatif)" rows="4"></textarea>
+            <textarea name="message" placeholder="Détails supplémentaires" rows="4"></textarea>
             <div class="modal-actions">
                 <button type="submit">Envoyer ma demande</button>
                 <button type="button" class="cancel" onclick="closeForm()">Annuler</button>

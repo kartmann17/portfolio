@@ -2,19 +2,20 @@
 
 namespace App\Controllers;
 
-use App\Repository\SendEmailRepository;
+use App\Services\SendEmailService;
 
 Class SendEmailController extends Controller{
 
-    public function EmailClient(){
-
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST'){
-
+    public function emailClient()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(["status" => "error", "message" => "Méthode de requête non autorisée."]);
+            exit();
+        } else {
             $data = $_POST;
-            $sendEmailRepository = new SendEmailRepository();
-            $sendEmailRepository->create($data);
-
-
+            $sendEmailService = new SendEmailService();
+            $sendEmailService->saveMessage($data);
         }
     }
 
