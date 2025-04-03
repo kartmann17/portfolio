@@ -71,12 +71,12 @@ class SendEmailService
 }
 
 
-    private function sendEmail($email)
-    {
-        $to = $email;
-        $Subject = 'Confirmation de réception - Kréyatik Studio';
+private function sendEmail($email)
+{
+    $to = $email;
+    $subject = 'Confirmation de réception - Kréyatik Studio';
 
-        $Body = "
+    $body = "
     <br><br>
     <table style='font-size: 0.9rem; color: #333; font-family: Arial, sans-serif; margin-top: 20px;'>
         <tr>
@@ -117,7 +117,14 @@ class SendEmailService
     </div>
     ";
 
-        $emailService = new EmailService();
-        $emailService->sendEmail($to, $Subject, $Body);
+    $adminEmail = 'kreyatik@gmail.com'; 
+
+    $emailService = new EmailService();
+    try {
+
+        $emailService->sendEmail($to, $subject, $body, null, null, null, $adminEmail);
+    } catch (\Exception $e) {
+        error_log("Erreur lors de l'envoi de l'email: " . $e->getMessage());
     }
+}
 }

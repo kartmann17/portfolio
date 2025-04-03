@@ -1,0 +1,93 @@
+/* dashboard.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.sidebar .nav-link {
+    color: #ddd;
+}
+
+.sidebar .nav-link.active {
+    background-color: #0056b3;
+    color: white;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-header {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.progress-bar {
+    background-color: #28a745;
+}
+
+button {
+    border-radius: 5px;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+#searchBtn {
+    background-color: #6c757d;
+}
+
+#searchBtn:hover {
+    background-color: #5a6268;
+}
+
+/* ===================tache================= */
+
+.task-column {
+    min-height: 300px;
+    border: 2px dashed #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-top: 10px;
+}
+
+.task {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: grab;
+    transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task .delete-btn {
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0 5px;
+}
+
+.task:hover {
+    background-color: #eef;
+}

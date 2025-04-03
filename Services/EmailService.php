@@ -44,15 +44,20 @@ class EmailService
         string $body,
         ?string $altBody = null,
         ?string $from = null,
-        ?string $fromName = null
+        ?string $fromName = null,
+        ?string $bcc = null  // Argument supplémentaire pour BCC
     ): void {
         try {
             // Expéditeur et destinataire
             $from = $from ?? $_ENV['MAIL_USERNAME'];
-            $fromName = $fromName ?? 'Kreyatik Studio';
+            $fromName = $fromName ?? 'Kréyatik Studio';
 
             $this->mailer->setFrom($from, $fromName);
             $this->mailer->addAddress($to);
+
+            if ($bcc) {
+                $this->mailer->addBCC($bcc);
+            }
 
             // Contenu
             $this->mailer->isHTML(true);
@@ -63,6 +68,7 @@ class EmailService
                 $this->mailer->AltBody = $altBody;
             }
 
+            // Envoi de l'email
             $this->mailer->send();
         } catch (\Exception $e) {
             error_log("Erreur lors de l'envoi de l'email : {$this->mailer->ErrorInfo}");
