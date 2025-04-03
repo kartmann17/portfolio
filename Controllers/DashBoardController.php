@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Services\TachesService;
 
+
 class DashBoardController extends Controller
 {
 
@@ -61,4 +62,5 @@ class DashBoardController extends Controller
         $service = new TachesService();
         $service->getAll();
     }
+
 }

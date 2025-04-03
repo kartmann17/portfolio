@@ -141,20 +141,23 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="addProjectForm">
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                <form id="addProjectForm" action="/Dashprojet/ajoutProjet">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
                     <div class="mb-3">
                         <label for="projectName" class="form-label">Nom du projet</label>
-                        <input type="text" class="form-control" id="projectName" required>
+                        <input type="text" class="form-control" id="projectName" name="name" required>
                     </div>
+
                     <div class="mb-3">
                         <label for="projectStatus" class="form-label">Statut du projet</label>
-                        <select class="form-select" id="projectStatus" required>
+                        <select class="form-select" id="projectStatus" name="status" required>
                             <option value="en-cours">En cours</option>
                             <option value="terminé">Terminé</option>
                             <option value="en-attente">En attente</option>
                         </select>
                     </div>
+
                     <button type="submit" class="btn btn-primary">Ajouter le projet</button>
                 </form>
             </div>
