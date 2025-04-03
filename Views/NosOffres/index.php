@@ -16,7 +16,7 @@ $css = 'nosoffres'
                 <p class="alt-price">ou 899€ en une fois</p>
                 <ul class="features">
                     <li>Site vitrine personnalisé ou e-commerce (Shopify, Wix)</li>
-                    <li>Nom de domaine & hébergement inclus</li>
+                    <li>Nom de domaine & hébergement inclus la première année</li>
                     <li>Maintenance & support</li>
                 </ul>
                 <div class="btn-wrapper">
@@ -35,7 +35,7 @@ $css = 'nosoffres'
                 <ul class="features">
                     <li>Site pro ou e-commerce complet</li>
                     <li>Optimisation SEO avancée</li>
-                    <li>Nom de domaine, hébergement, support & mises à jour</li>
+                    <li>Nom de domaine, hébergement inclus la première année, support & mises à jour</li>
                 </ul>
                 <div class="btn-wrapper">
                     <button class="btn-subscribe" onclick="openForm(this)">Souscrire</button>
@@ -53,7 +53,7 @@ $css = 'nosoffres'
                     <li>Site haut de gamme sur mesure</li>
                     <li>Consulting & stratégie digitale</li>
                     <li>Assistance prioritaire & SEO expert</li>
-                    <li>Nom de domaine, hébergement, support & mises à jour</li>
+                    <li>Nom de domaine, hébergement inclus la première année support & mises à jour</li>
                 </ul>
                 <div class="btn-wrapper">
                     <button class="btn-subscribe" onclick="openForm(this)">Souscrire</button>

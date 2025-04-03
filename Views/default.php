@@ -8,6 +8,7 @@ use App\Services\MetaService;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<?= $_SESSION['csrf_token'] ?? '' ?>">
     <?= MetaService::seo(); ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +16,7 @@ use App\Services\MetaService;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
     <link href="/assets/css/default.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/assets/css/<?php if (isset($css)) {
                                 echo $css;
                             } ?>.css" rel="stylesheet">
@@ -26,55 +28,57 @@ use App\Services\MetaService;
             } ?></title>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand d-block d-lg-none" href="/">
-                <img src="/assets/images/STUDIOcolibri.png"
-                    alt="Logo Kréyatik"
-                    width="100" height="50"
-                    loading="lazy"
-                    decoding="async">
-            </a>
+<?php if (strpos($_SERVER['REQUEST_URI'], '/Dashboard') === false): ?>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand d-block d-lg-none" href="/">
+                    <img src="/assets/images/STUDIOcolibri.png" alt="Logo Kréyatik" width="100" height="50" loading="lazy" decoding="async">
+                </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ms-auto m-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/NosOffres">Nos Offres</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Contact">Contact</a>
-                    </li>
-                    <?php if (isset($_SESSION['id'])): ?>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto m-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/log/logout"
-                                onclick="return confirm('Êtes-vous sûr de vouloir vous déconnecter ?');">Déconnexion</a>
+                            <a class="nav-link active" aria-current="page" href="/">Accueil</a>
                         </li>
-                    <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/log">Connexion</a>
+                            <a class="nav-link" href="/NosOffres">Nos Offres</a>
                         </li>
-                    <?php endif; ?>
-                </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Portfolio">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Contact">Contact</a>
+                        </li>
+                        <?php if (isset($_SESSION['id'])): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/log/logout" onclick="return confirm('Êtes-vous sûr de vouloir vous déconnecter ?');">Déconnexion</a>
+                            </li>
+                        <?php else: ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/log">Connexion</a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'Admin')): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Dashboard">Dashboard</a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    <?php endif; ?>
 
     <main>
         <?= $contenu ?>
     </main>
 
+    <?php if (strpos($_SERVER['REQUEST_URI'], '/Dashboard') === false): ?>
     <footer class="footer">
         <div class="container footer-container column-layout">
             <div class="footer-col branding text-center">
@@ -98,6 +102,7 @@ use App\Services\MetaService;
 
         <p class="footer-bottom text-center">&copy; 2025 Kréyatik Studio. Tous droits réservés.</p>
     </footer>
+    <?php endif; ?>
 
     <script src="/assets/js/<?php if (isset($script)) {
                                 echo $script;

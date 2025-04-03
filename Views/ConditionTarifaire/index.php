@@ -33,9 +33,9 @@ $css = 'conditionT'
     <div class="condition-block">
       <h4>ℹ️ Informations complémentaires</h4>
       <ul>
-        <li>Tous les sites incluent : nom de domaine, hébergement, responsive design, maintenance de base, accompagnement client.</li>
+        <li>Tous les sites incluent : nom de domaine, hébergement (1ère année), responsive design, maintenance de base, accompagnement client.</li>
         <li>Le nombre de pages correspond aux pages principales. Les sous-pages ou versions linguistiques peuvent être comptabilisées comme des pages supplémentaires.</li>
-        <li>Le site est livré optimisé pour le référencement naturel (SEO), SEA Google Ads possible en suppléments</li>
+        <li>Le site est livré optimisé pour le référencement naturel (SEO), SEA Google Ads possible en supplément.</li>
         <li><strong>Le logo doit être fourni</strong> par le client en HD (PNG, SVG ou AI). Sinon, une création de logo est proposée de <strong>100€ à 300€</strong>.</li>
         <li>Les textes et images doivent être fournis. Possibilité de rédaction web et accès banque d'images en supplément.</li>
         <li>Les délais de livraison varient selon la complexité du projet et la réactivité client.</li>

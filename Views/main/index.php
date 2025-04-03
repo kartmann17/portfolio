@@ -2,15 +2,15 @@
 $css = 'main'
 ?>
 <section class="hero">
-    <div class="hero-content">
-        <h1 class="fancy-title">
-            <div class="word" id="word-kreyatik"></div>
-            <div class="word" id="word-studio"></div>
-        </h1>
-        <p>Votre lumière merite d'être en ligne.</p>
-        <p>Faites décoller votre présence en ligne dès <span class="fw-bold">99 € / mois.</span>  Design, performance et accompagnement inclus.</p>
-        <a href="#engagements" class="cta-button">Nos Engagements</a>
-    </div>
+  <div class="hero-content">
+    <h1 class="fancy-title">
+      <div class="word" id="word-kreyatik"></div>
+      <div class="word" id="word-studio"></div>
+    </h1>
+    <p>Votre lumière merite d'être en ligne.</p>
+    <p>Faites décoller votre présence en ligne dès <span class="fw-bold">99 € / mois.</span> Design, performance et accompagnement inclus.</p>
+    <a href="#engagements" class="cta-button">Nos Engagements</a>
+  </div>
 </section>
 
 <!-- ========== À PROPOS (STORYTELLING + PARALLAX) ========== -->
@@ -69,8 +69,8 @@ $css = 'main'
       </div>
       <div class="col-md-6 col-lg-4">
         <div class="engagement-box">
-          <h4>🔐 Sécurité & fiabilité</h4>
-          <p>Hébergement sécurisé en France, sauvegardes automatiques, et support réactif. Dormez tranquille.</p>
+          <h4>🌱 Hébergement sécurisé & écologique</h4>
+          <p>Hébergement sécurisé, éco-responsable avec sauvegardes automatiques et compensation CO₂. Support réactif pour plus de sérénité.</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
@@ -96,26 +96,26 @@ $css = 'main'
 </section>
 
 <section id="contact" class="contact-section">
-    <div class="container contact-container">
-        <h2 class="contact-title">Contactez-nous</h2>
+  <div class="container contact-container">
+    <h2 class="contact-title">Contactez-nous</h2>
 
-        <div id="form-message" style="display: none; margin-top: 20px; color: #00A86B; font-weight: bold;">
-            Merci ! Votre message a bien été envoyé.
-        </div>
-
-        <form action="/SendEmail/emailClient" method="post" class="contact-form">
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-            <input type="text" name="name" placeholder="Votre nom" required class="contact-input">
-            <input type="email" name="email" placeholder="Votre email" required class="contact-input">
-            <input type="text" name="object_message" placeholder="Objet" required class="contact-input">
-            <textarea name="message" placeholder="Votre message" rows="6" required class="contact-textarea"></textarea>
-            <button type="submit" class="contact-button">Envoyer</button>
-        </form>
-        <div>
-            <div id="error-message" class="alert alert-danger" role="alert"></div>
-            <div id="success-message" class="alert alert-success" role="alert"></div>
-        </div>
+    <div id="form-message" style="display: none; margin-top: 20px; color: #00A86B; font-weight: bold;">
+      Merci ! Votre message a bien été envoyé.
     </div>
+
+    <form action="/SendEmail/emailClient" method="post" class="contact-form">
+      <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+      <input type="text" name="name" placeholder="Votre nom" required class="contact-input">
+      <input type="email" name="email" placeholder="Votre email" required class="contact-input">
+      <input type="text" name="object_message" placeholder="Objet" required class="contact-input">
+      <textarea name="message" placeholder="Votre message" rows="6" required class="contact-textarea"></textarea>
+      <button type="submit" class="contact-button">Envoyer</button>
+    </form>
+    <div>
+      <div id="error-message" class="alert alert-danger" role="alert"></div>
+      <div id="success-message" class="alert alert-success" role="alert"></div>
+    </div>
+  </div>
 </section>
 
 

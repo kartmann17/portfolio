@@ -33,7 +33,7 @@ $css = 'portfolio';
 
     <!-- IMAGE 1 -->
     <div class="portfolio-item">
-        <img src="/assets/images/portfolio/loukart.png" alt="Projet 3 - Site agence">
+        <img src="/assets/images/portfolio/loukart.png" alt="Site agence">
         <div class="portfolio-caption">
             <h3>Association karting</h3>
             <p>Design adapté pour une association de karting</p>
@@ -42,7 +42,7 @@ $css = 'portfolio';
 
     <!-- IMAGE 2 -->
     <div class="portfolio-item">
-        <img src="/assets/images/portfolio/snack.png" alt="Projet 4 - Site restaurant">
+        <img src="/assets/images/portfolio/snack.png" alt="Site restaurant">
         <div class="portfolio-caption">
             <h3>Restaurant local</h3>
             <p>Site avec réservation en ligne et carte dynamique</p>
