@@ -3,10 +3,19 @@
 namespace App\Controllers;
 
 use App\Services\TachesService;
-
+use App\Services\Middleware;
 
 class DashBoardController extends Controller
 {
+    /**
+     * Constructeur du contrôleur
+     * Vérifie que l'utilisateur est authentifié et a le rôle Admin
+     */
+    public function __construct()
+    {
+        // Vérifier que l'utilisateur est authentifié et a le rôle Admin
+        Middleware::requireAdmin();
+    }
 
     public function index()
     {
@@ -62,5 +71,4 @@ class DashBoardController extends Controller
         $service = new TachesService();
         $service->getAll();
     }
-
 }

@@ -22,6 +22,7 @@ class DashprojetController extends Controller
 
     public function listeProjets()
     {
-        return (new ProjetService())->getAll();
+        $service = new ProjetService();
+        $service->getAll();
     }
 }

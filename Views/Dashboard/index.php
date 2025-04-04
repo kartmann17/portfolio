@@ -29,7 +29,7 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <section class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-4 border-bottom">
                 <h1 class="h2">Tableau de bord</h1>
                 <div>
@@ -95,7 +95,6 @@
                                 </tr>
                             </thead>
                             <tbody id="projectList">
-                                <!-- Liste dynamique des projets -->
                             </tbody>
                         </table>
                     </div>
@@ -128,7 +127,7 @@
                     </div>
                 </div>
             </section>
-        </main>
+        </section>
     </div>
 </section>
 

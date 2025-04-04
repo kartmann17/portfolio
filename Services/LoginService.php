@@ -28,14 +28,18 @@ class LoginService
         }
 
         if ($user && password_verify($password, $user->password)) {
-            $_SESSION['id'] = $user->id;
-            $_SESSION['name'] = $user->name;
-            $_SESSION['email'] = $user->email;
-            $_SESSION['role'] = $user->role;
+            // Utiliser le SessionManager pour créer une session sécurisée
+            SessionManager::createUserSession($user);
+
+            // Mettre à jour la dernière connexion dans la base de données
+            $userRepository->updateLastLogin($user->id);
 
             http_response_code(200);
             echo json_encode(["status" => "success", "redirect" => "/Dashboard/index"]);
         } else {
+            // Log tentative de connexion échouée
+            $this->logFailedLogin($email);
+
             http_response_code(401);
             echo json_encode(["status" => "error", "message" => "Email ou Mot de passe incorrect."]);
         }
@@ -44,9 +48,24 @@ class LoginService
 
     public function logout()
     {
-        session_destroy();
+        // Utiliser le SessionManager pour détruire la session
+        SessionManager::destroy();
+
         http_response_code(200);
         echo json_encode(["status" => "success", "redirect" => "/"]);
         exit();
+    }
+
+    /**
+     * Journalise les tentatives de connexion échouées
+     *
+     * @param string $email L'email utilisé pour la tentative de connexion
+     * @return void
+     */
+    private function logFailedLogin($email)
+    {
+        // Dans un environnement de production, on pourrait enregistrer cela dans un fichier de log
+        // ou une table de base de données pour suivre les tentatives d'intrusion
+        error_log("Tentative de connexion échouée pour l'email: " . $email . " - IP: " . $_SERVER['REMOTE_ADDR']);
     }
 }

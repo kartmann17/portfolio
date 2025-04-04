@@ -3,6 +3,7 @@
 namespace App\Config;
 
 use App\Controllers\MainController;
+use App\Services\SessionManager;
 
 class Main
 {
@@ -16,19 +17,27 @@ class Main
      */
     public function start()
     {
-        session_start();
+        // Initialisation sécurisée de la session
+        SessionManager::init();
+
+        // Vérifier si la session est valide
+        if (!SessionManager::isSessionValid()) {
+            // Si la session n'est pas valide, rediriger vers la page de connexion
+            if (
+                strpos($_SERVER['REQUEST_URI'], '/log') === false &&
+                strpos($_SERVER['REQUEST_URI'], '/register') === false
+            ) {
+                header('Location: /log');
+                exit();
+            }
+        }
 
         // Vérifier si l'utilisateur a accepté les cookies (vérifie la présence du cookie "cookieConsent")
         if (isset($_COOKIE['cookieConsent']) && $_COOKIE['cookieConsent'] === 'accepted') {
             // Définir un cookie "last_visit" uniquement si l'utilisateur a donné son consentement
             if (!isset($_COOKIE['last_visit'])) {
-                setcookie('last_visit', time(), time() + 3600 * 24 * 30, "/", "", true, false);
+                setcookie('last_visit', time(), time() + 3600 * 24 * 30, "/", "", true, true);
             }
-        }
-
-        // Générer le token CSRF si absent de la session
-        if (empty($_SESSION['csrf_token'])) {
-            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
         }
 
         $uri = $_SERVER['REQUEST_URI'];
@@ -81,7 +90,7 @@ class Main
      */
     public function checkCsrfToken($token)
     {
-        if (!isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $token)) {
+        if (!SessionManager::validateCsrfToken($token)) {
             // Retourner une erreur 403 si le jeton CSRF est invalide ou manquant
             http_response_code(403);
             echo json_encode(['error' => 'Jeton CSRF invalide.']);

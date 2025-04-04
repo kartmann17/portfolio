@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Services\LoginService;
+use App\Services\SessionManager;
 
 class LogController extends Controller
 {
@@ -25,7 +26,7 @@ class LogController extends Controller
             http_response_code(405);
             echo json_encode(["status" => "error", "message" => "Méthode de requête non autorisée."]);
             exit();
-        }else {
+        } else {
             $data = $_POST;
             $loginService = new LoginService();
             $loginService->login($data);
@@ -34,7 +35,8 @@ class LogController extends Controller
 
     public function logout()
     {
-        session_destroy();
+        // Utiliser le SessionManager pour détruire la session de manière sécurisée
+        SessionManager::destroy();
         header('Location: /');
     }
 }
